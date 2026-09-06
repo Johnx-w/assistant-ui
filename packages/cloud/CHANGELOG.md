@@ -1,5 +1,15 @@
 # assistant-cloud
 
+## 0.1.44
+
+### Patch Changes
+
+- [#6815](https://github.com/assistant-ui/assistant-ui/pull/6815) [`c9e03ef`](https://github.com/assistant-ui/assistant-ui/commit/c9e03ef26ac03f8300b29d5a3a562284b72794f2) - feat: submit feedback for cloud-persisted thread messages ([@okisdev](https://github.com/okisdev))
+
+- [#6843](https://github.com/assistant-ui/assistant-ui/pull/6843) [`24a288e`](https://github.com/assistant-ui/assistant-ui/commit/24a288eeafb263dc6a91bec263aecf551852de0e) - feat(cloud): claim anonymous threads into a signed-in workspace by exposing the browser's anonymous refresh token and moving its threads into an authenticated Assistant Cloud workspace after sign-in. ([@okisdev](https://github.com/okisdev))
+- Updated dependencies [[`afac9e0`](https://github.com/assistant-ui/assistant-ui/commit/afac9e02911f05684309087b4e2d9e0ee9b2bc1f), [`4cdcabb`](https://github.com/assistant-ui/assistant-ui/commit/4cdcabb1a914b48af214da59896fe3c716465321), [`01fdd4b`](https://github.com/assistant-ui/assistant-ui/commit/01fdd4b204f4c3d2c151f7a0ac356706de5b923b)]:
+  - assistant-stream@0.3.42
+
 ## 0.1.43
 
 ### Patch Changes

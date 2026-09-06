@@ -1,5 +1,37 @@
 # @assistant-ui/core
 
+## 0.3.18
+
+### Patch Changes
+
+- [#6815](https://github.com/assistant-ui/assistant-ui/pull/6815) [`c9e03ef`](https://github.com/assistant-ui/assistant-ui/commit/c9e03ef26ac03f8300b29d5a3a562284b72794f2) - feat: submit feedback for cloud-persisted thread messages ([@okisdev](https://github.com/okisdev))
+
+- [#6895](https://github.com/assistant-ui/assistant-ui/pull/6895) [`18c12e6`](https://github.com/assistant-ui/assistant-ui/commit/18c12e6050f23890a16fdefd808c9f42cfdca7d1) - fix: use the original file to select the adapter for attachment removal when contentType is absent ([@ephraimduncan](https://github.com/ephraimduncan))
+
+- [#6911](https://github.com/assistant-ui/assistant-ui/pull/6911) [`0d09f05`](https://github.com/assistant-ui/assistant-ui/commit/0d09f051c7745c27fb5e572fb7543d9689bd9ab1) - Handle prototype-named tool and remote thread keys safely. ([@rupic-app](https://github.com/apps/rupic-app))
+
+- [#6875](https://github.com/assistant-ui/assistant-ui/pull/6875) [`73b24d5`](https://github.com/assistant-ui/assistant-ui/commit/73b24d54ee6d753682508c8e7d8911e82ddde797) - fix: keep separate tool calls when their IDs are absent ([@ephraimduncan](https://github.com/ephraimduncan))
+
+- [#6880](https://github.com/assistant-ui/assistant-ui/pull/6880) [`2c1e65e`](https://github.com/assistant-ui/assistant-ui/commit/2c1e65eb61c8eada5431b168782ab69de0e71e36) - fix: match attachment extensions against the complete filename suffix, so `.tar.gz` accepts `backup.tar.gz` and `.png` rejects extensionless `png`. ([@ephraimduncan](https://github.com/ephraimduncan))
+
+- [#6920](https://github.com/assistant-ui/assistant-ui/pull/6920) [`071a879`](https://github.com/assistant-ui/assistant-ui/commit/071a879e9b03d28e092dfa35623dcbbc4ff107e3) - fix: preserve attachment removal errors in the tap composer ([@rupic-app](https://github.com/apps/rupic-app))
+
+- [#6824](https://github.com/assistant-ui/assistant-ui/pull/6824) [`5630967`](https://github.com/assistant-ui/assistant-ui/commit/563096726c1e97553699fb2bebb818bcf3d506de) - fix: preserve a manual thread rename that lands while automatic title generation is in flight. the rename is reasserted through the adapter once the generated run has persisted its own title, so the typed title survives on the server as well as in the list. ([@rupic-app](https://github.com/apps/rupic-app))
+
+- [#6928](https://github.com/assistant-ui/assistant-ui/pull/6928) [`73a1e76`](https://github.com/assistant-ui/assistant-ui/commit/73a1e76ec248a213c35071262d4de8a12684aaab) - fix: isolate external-store thread records from prototype-named ids ([@rupic-app](https://github.com/apps/rupic-app))
+
+- [#6931](https://github.com/assistant-ui/assistant-ui/pull/6931) [`5febc06`](https://github.com/assistant-ui/assistant-ui/commit/5febc06a6af98ed4aa48eea8f7737d890bd35015) - refactor: adjust state during render where an effect only mirrored a prop ([@okisdev](https://github.com/okisdev))
+  
+  The composer trigger's keyboard and navigation resources, and the devtools panel and thread tab, reset their state during render instead of scheduling a second pass from an effect, so a prop change settles in one render. Effects that genuinely synchronize with an external system (a clock, a subscription catch-up, an async load, a registry write undone on unmount) keep their `setState`.
+
+- [#6842](https://github.com/assistant-ui/assistant-ui/pull/6842) [`ef584ea`](https://github.com/assistant-ui/assistant-ui/commit/ef584ea623c851ba8a38e76b0a8929893a7d83f0) - fix(core): keep the thread list and report the error when a load fails. failed loads previously looked like an empty thread list; thread list state now exposes `loadError`, clears it when a later load starts, and in browsers retries a failed load once when the window comes back online or the document becomes visible again. React Native has neither event, so it keeps recovering through `reload()`. ([@okisdev](https://github.com/okisdev))
+
+- [#6864](https://github.com/assistant-ui/assistant-ui/pull/6864) [`6f0d7af`](https://github.com/assistant-ui/assistant-ui/commit/6f0d7afb1dee5fe756c4c25d4829e901fd52e81f) - fix: defer remote thread deletion cleanup until persistence succeeds ([@Kinfe123](https://github.com/Kinfe123))
+
+- [#6915](https://github.com/assistant-ui/assistant-ui/pull/6915) [`1f80dd0`](https://github.com/assistant-ui/assistant-ui/commit/1f80dd02fd40172d92d9f6de6f08ebeafa8a30a3) - fix: skip adapter cleanup for complete edit attachments ([@rupic-app](https://github.com/apps/rupic-app))
+- Updated dependencies [[`afac9e0`](https://github.com/assistant-ui/assistant-ui/commit/afac9e02911f05684309087b4e2d9e0ee9b2bc1f), [`4cdcabb`](https://github.com/assistant-ui/assistant-ui/commit/4cdcabb1a914b48af214da59896fe3c716465321), [`01fdd4b`](https://github.com/assistant-ui/assistant-ui/commit/01fdd4b204f4c3d2c151f7a0ac356706de5b923b)]:
+  - assistant-stream@0.3.42
+
 ## 0.3.17
 
 ### Patch Changes

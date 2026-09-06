@@ -1,5 +1,35 @@
 # @assistant-ui/react
 
+## 0.15.19
+
+### Patch Changes
+
+- [#6738](https://github.com/assistant-ui/assistant-ui/pull/6738) [`3c17a5f`](https://github.com/assistant-ui/assistant-ui/commit/3c17a5f08cacc55a5eaa5c6eb7016664847a80a6) - fix: prevent queued live completion requests from starting after unmount ([@Kinfe123](https://github.com/Kinfe123))
+
+- [#6843](https://github.com/assistant-ui/assistant-ui/pull/6843) [`24a288e`](https://github.com/assistant-ui/assistant-ui/commit/24a288eeafb263dc6a91bec263aecf551852de0e) - feat(cloud): claim anonymous threads into a signed-in workspace by exposing the browser's anonymous refresh token and moving its threads into an authenticated Assistant Cloud workspace after sign-in. ([@okisdev](https://github.com/okisdev))
+
+- [#6911](https://github.com/assistant-ui/assistant-ui/pull/6911) [`0d09f05`](https://github.com/assistant-ui/assistant-ui/commit/0d09f051c7745c27fb5e572fb7543d9689bd9ab1) - Handle prototype-named tool and remote thread keys safely. ([@rupic-app](https://github.com/apps/rupic-app))
+
+- [#6893](https://github.com/assistant-ui/assistant-ui/pull/6893) [`b0a03ce`](https://github.com/assistant-ui/assistant-ui/commit/b0a03ce9b189b3d8c93a86a533dfa163fbae32c1) - fix: apply tool allowlist changes to mounted MCP app frames ([@ephraimduncan](https://github.com/ephraimduncan))
+
+- [#6888](https://github.com/assistant-ui/assistant-ui/pull/6888) [`34af371`](https://github.com/assistant-ui/assistant-ui/commit/34af371231d9cfced0bb73633825bbef0cf6e1a6) - fix: preserve the requested scroll behavior across nested viewport providers ([@ephraimduncan](https://github.com/ephraimduncan))
+
+- [#6876](https://github.com/assistant-ui/assistant-ui/pull/6876) [`912f5c5`](https://github.com/assistant-ui/assistant-ui/commit/912f5c56ca6fe5ae97800eaa22a54e72cfbbf2b0) - fix: reject quote selections that cross excluded content ([@ephraimduncan](https://github.com/ephraimduncan))
+
+- [#6931](https://github.com/assistant-ui/assistant-ui/pull/6931) [`5febc06`](https://github.com/assistant-ui/assistant-ui/commit/5febc06a6af98ed4aa48eea8f7737d890bd35015) - refactor: adjust state during render where an effect only mirrored a prop ([@okisdev](https://github.com/okisdev))
+  
+  The composer trigger's keyboard and navigation resources, and the devtools panel and thread tab, reset their state during render instead of scheduling a second pass from an effect, so a prop change settles in one render. Effects that genuinely synchronize with an external system (a clock, a subscription catch-up, an async load, a registry write undone on unmount) keep their `setState`.
+
+- [#6837](https://github.com/assistant-ui/assistant-ui/pull/6837) [`191bd97`](https://github.com/assistant-ui/assistant-ui/commit/191bd9728471816ead3cc5c5d40bb57b082ff4d2) - fix(react): keep the page from shifting sideways when a collapsible opens ([@okisdev](https://github.com/okisdev))
+  
+  `useScrollLock` hides the scrollbar for the length of the animation and pads the scroll container to keep its width, but it measured the bar as `offsetWidth - clientWidth` minus borders. A root element's `offsetWidth` already excludes the viewport scrollbar, so that reported zero whenever the scroll had propagated to the viewport, no padding was added, and every centered element jumped sideways as the collapsible opened and back as it closed. A root scroller now falls back to measuring against `innerWidth`, but only when the element formula reports nothing, so a body that scrolls in its own right is still padded by its own gutter.
+- Updated dependencies [[`bf2cbbc`](https://github.com/assistant-ui/assistant-ui/commit/bf2cbbcf6838ff2c43eb2d4a1fd9d752be3076af), [`c9e03ef`](https://github.com/assistant-ui/assistant-ui/commit/c9e03ef26ac03f8300b29d5a3a562284b72794f2), [`24a288e`](https://github.com/assistant-ui/assistant-ui/commit/24a288eeafb263dc6a91bec263aecf551852de0e), [`f044254`](https://github.com/assistant-ui/assistant-ui/commit/f04425409c270c879f86962eeb920dafe2adfe5d), [`18c12e6`](https://github.com/assistant-ui/assistant-ui/commit/18c12e6050f23890a16fdefd808c9f42cfdca7d1), [`0d09f05`](https://github.com/assistant-ui/assistant-ui/commit/0d09f051c7745c27fb5e572fb7543d9689bd9ab1), [`73b24d5`](https://github.com/assistant-ui/assistant-ui/commit/73b24d54ee6d753682508c8e7d8911e82ddde797), [`2c1e65e`](https://github.com/assistant-ui/assistant-ui/commit/2c1e65eb61c8eada5431b168782ab69de0e71e36), [`071a879`](https://github.com/assistant-ui/assistant-ui/commit/071a879e9b03d28e092dfa35623dcbbc4ff107e3), [`5630967`](https://github.com/assistant-ui/assistant-ui/commit/563096726c1e97553699fb2bebb818bcf3d506de), [`928c580`](https://github.com/assistant-ui/assistant-ui/commit/928c580f4132496ee6ae9dc5a64fe44ca4bfd1b7), [`afac9e0`](https://github.com/assistant-ui/assistant-ui/commit/afac9e02911f05684309087b4e2d9e0ee9b2bc1f), [`4cdcabb`](https://github.com/assistant-ui/assistant-ui/commit/4cdcabb1a914b48af214da59896fe3c716465321), [`73a1e76`](https://github.com/assistant-ui/assistant-ui/commit/73a1e76ec248a213c35071262d4de8a12684aaab), [`5febc06`](https://github.com/assistant-ui/assistant-ui/commit/5febc06a6af98ed4aa48eea8f7737d890bd35015), [`b2d12e7`](https://github.com/assistant-ui/assistant-ui/commit/b2d12e7b48e790daf085525f1f3de4e3a25c2da1), [`01fdd4b`](https://github.com/assistant-ui/assistant-ui/commit/01fdd4b204f4c3d2c151f7a0ac356706de5b923b), [`ef584ea`](https://github.com/assistant-ui/assistant-ui/commit/ef584ea623c851ba8a38e76b0a8929893a7d83f0), [`6f0d7af`](https://github.com/assistant-ui/assistant-ui/commit/6f0d7afb1dee5fe756c4c25d4829e901fd52e81f), [`1f80dd0`](https://github.com/assistant-ui/assistant-ui/commit/1f80dd02fd40172d92d9f6de6f08ebeafa8a30a3)]:
+  - @assistant-ui/tap@0.9.17
+  - assistant-cloud@0.1.44
+  - @assistant-ui/core@0.3.18
+  - @assistant-ui/store@0.3.13
+  - assistant-stream@0.3.42
+
 ## 0.15.18
 
 ### Patch Changes

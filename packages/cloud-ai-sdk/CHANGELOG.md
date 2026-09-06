@@ -1,5 +1,17 @@
 # @assistant-ui/cloud-ai-sdk
 
+## 0.1.38
+
+### Patch Changes
+
+- [#6799](https://github.com/assistant-ui/assistant-ui/pull/6799) [`c5c303b`](https://github.com/assistant-ui/assistant-ui/commit/c5c303b9592b16041a3d6ff74af803b9805ead95) - fix: preserve manual thread titles when automatic generation is pending ([@Kinfe123](https://github.com/Kinfe123))
+
+- [#6931](https://github.com/assistant-ui/assistant-ui/pull/6931) [`5febc06`](https://github.com/assistant-ui/assistant-ui/commit/5febc06a6af98ed4aa48eea8f7737d890bd35015) - refactor: adjust state during render where an effect only mirrored a prop ([@okisdev](https://github.com/okisdev))
+  
+  The composer trigger's keyboard and navigation resources, and the devtools panel and thread tab, reset their state during render instead of scheduling a second pass from an effect, so a prop change settles in one render. Effects that genuinely synchronize with an external system (a clock, a subscription catch-up, an async load, a registry write undone on unmount) keep their `setState`.
+- Updated dependencies [[`c9e03ef`](https://github.com/assistant-ui/assistant-ui/commit/c9e03ef26ac03f8300b29d5a3a562284b72794f2), [`24a288e`](https://github.com/assistant-ui/assistant-ui/commit/24a288eeafb263dc6a91bec263aecf551852de0e)]:
+  - assistant-cloud@0.1.44
+
 ## 0.1.37
 
 ### Patch Changes

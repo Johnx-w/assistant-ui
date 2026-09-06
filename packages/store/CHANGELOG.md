@@ -1,5 +1,17 @@
 # @assistant-ui/store
 
+## 0.3.13
+
+### Patch Changes
+
+- [#6883](https://github.com/assistant-ui/assistant-ui/pull/6883) [`f044254`](https://github.com/assistant-ui/assistant-ui/commit/f04425409c270c879f86962eeb920dafe2adfe5d) - fix: add and retrieve client resources with prototype-named keys ([@ephraimduncan](https://github.com/ephraimduncan))
+
+- [#6521](https://github.com/assistant-ui/assistant-ui/pull/6521) [`928c580`](https://github.com/assistant-ui/assistant-ui/commit/928c580f4132496ee6ae9dc5a64fe44ca4bfd1b7) - fix: commit hosted tap resources before descendant layout effects ([@rupic-app](https://github.com/apps/rupic-app))
+  
+  AuiProvider mounts the tap host's commit in the layout phase instead of the passive phase, so a descendant layout effect that calls a client action runs against the render it was mounted with. Previously a `RemoteThreadList` consumer reloading from a layout effect reached the previously committed adapter. The commit now runs before paint; direct `useTapHost` consumers that do not mount `effects` themselves keep the passive fallback.
+
+- [#6272](https://github.com/assistant-ui/assistant-ui/pull/6272) [`b2d12e7`](https://github.com/assistant-ui/assistant-ui/commit/b2d12e7b48e790daf085525f1f3de4e3a25c2da1) - fix: log event listener errors instead of raising uncatchable exceptions ([@Kinfe123](https://github.com/Kinfe123))
+
 ## 0.3.12
 
 ### Patch Changes

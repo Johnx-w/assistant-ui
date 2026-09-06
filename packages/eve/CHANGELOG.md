@@ -1,5 +1,16 @@
 # @assistant-ui/eve
 
+## 0.0.17
+
+### Patch Changes
+
+- [#6813](https://github.com/assistant-ui/assistant-ui/pull/6813) [`d49999b`](https://github.com/assistant-ui/assistant-ui/commit/d49999b63a6e620c49f7d7fef3c197465b07c5d0) - fix: show resumed session history at its real times, not "just now" ([@samdickson22](https://github.com/samdickson22))
+  
+  `createdAt` now comes from the `meta.at` of each message's own stream event, so a resumed session renders yesterday's messages at yesterday's times. A confirmed message therefore carries eve's server clock rather than the client's first-observation clock, which is what keeps its time stable across reloads and devices; optimistic and failed sends have no durable event and keep the client wall clock.
+- Updated dependencies [[`c9e03ef`](https://github.com/assistant-ui/assistant-ui/commit/c9e03ef26ac03f8300b29d5a3a562284b72794f2), [`f044254`](https://github.com/assistant-ui/assistant-ui/commit/f04425409c270c879f86962eeb920dafe2adfe5d), [`18c12e6`](https://github.com/assistant-ui/assistant-ui/commit/18c12e6050f23890a16fdefd808c9f42cfdca7d1), [`0d09f05`](https://github.com/assistant-ui/assistant-ui/commit/0d09f051c7745c27fb5e572fb7543d9689bd9ab1), [`73b24d5`](https://github.com/assistant-ui/assistant-ui/commit/73b24d54ee6d753682508c8e7d8911e82ddde797), [`2c1e65e`](https://github.com/assistant-ui/assistant-ui/commit/2c1e65eb61c8eada5431b168782ab69de0e71e36), [`071a879`](https://github.com/assistant-ui/assistant-ui/commit/071a879e9b03d28e092dfa35623dcbbc4ff107e3), [`5630967`](https://github.com/assistant-ui/assistant-ui/commit/563096726c1e97553699fb2bebb818bcf3d506de), [`928c580`](https://github.com/assistant-ui/assistant-ui/commit/928c580f4132496ee6ae9dc5a64fe44ca4bfd1b7), [`73a1e76`](https://github.com/assistant-ui/assistant-ui/commit/73a1e76ec248a213c35071262d4de8a12684aaab), [`5febc06`](https://github.com/assistant-ui/assistant-ui/commit/5febc06a6af98ed4aa48eea8f7737d890bd35015), [`b2d12e7`](https://github.com/assistant-ui/assistant-ui/commit/b2d12e7b48e790daf085525f1f3de4e3a25c2da1), [`ef584ea`](https://github.com/assistant-ui/assistant-ui/commit/ef584ea623c851ba8a38e76b0a8929893a7d83f0), [`6f0d7af`](https://github.com/assistant-ui/assistant-ui/commit/6f0d7afb1dee5fe756c4c25d4829e901fd52e81f), [`1f80dd0`](https://github.com/assistant-ui/assistant-ui/commit/1f80dd02fd40172d92d9f6de6f08ebeafa8a30a3)]:
+  - @assistant-ui/core@0.3.18
+  - @assistant-ui/store@0.3.13
+
 ## 0.0.16
 
 ### Patch Changes

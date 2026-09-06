@@ -1,5 +1,15 @@
 # assistant-stream
 
+## 0.3.42
+
+### Patch Changes
+
+- [#6881](https://github.com/assistant-ui/assistant-ui/pull/6881) [`afac9e0`](https://github.com/assistant-ui/assistant-ui/commit/afac9e02911f05684309087b4e2d9e0ee9b2bc1f) - fix: complete aborted in-memory stream reads without throwing a stored error after the last buffered chunk. ([@ephraimduncan](https://github.com/ephraimduncan))
+
+- [#6877](https://github.com/assistant-ui/assistant-ui/pull/6877) [`4cdcabb`](https://github.com/assistant-ui/assistant-ui/commit/4cdcabb1a914b48af214da59896fe3c716465321) - fix: Keep stored replay bytes separate from producer and consumer buffers. ([@ephraimduncan](https://github.com/ephraimduncan))
+
+- [#6868](https://github.com/assistant-ui/assistant-ui/pull/6868) [`01fdd4b`](https://github.com/assistant-ui/assistant-ui/commit/01fdd4b204f4c3d2c151f7a0ac356706de5b923b) - fix: keep positive exponents incomplete until all argument digits arrive ([@ephraimduncan](https://github.com/ephraimduncan))
+
 ## 0.3.41
 
 ### Patch Changes

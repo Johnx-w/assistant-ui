@@ -1,5 +1,11 @@
 # @assistant-ui/agent-launcher
 
+## 0.1.15
+
+### Patch Changes
+
+- [#6890](https://github.com/assistant-ui/assistant-ui/pull/6890) [`f8be839`](https://github.com/assistant-ui/assistant-ui/commit/f8be83931548d673b7bd4c859d98cd0ab952d7bc) - fix: keep the selected skill when the prompt is empty ([@ephraimduncan](https://github.com/ephraimduncan))
+
 ## 0.1.14
 
 ### Patch Changes
