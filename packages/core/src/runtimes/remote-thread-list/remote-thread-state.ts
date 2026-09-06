@@ -278,6 +278,7 @@ export const updateStatusReducer = (
   state: RemoteThreadState,
   threadIdOrRemoteId: string,
   newStatus: "regular" | "archived" | "deleted",
+  initializeTask?: Promise<RemoteThreadInitializeResponse>,
 ) => {
   const data = getThreadData(state, threadIdOrRemoteId);
   if (!data) return state;
@@ -337,13 +338,29 @@ export const updateStatusReducer = (
   }
 
   if (newStatus !== "deleted") {
-    newState.threadData = {
-      ...newState.threadData,
-      [id]: {
-        ...data,
-        status: newStatus,
-      },
-    };
+    if (data.status === "new") {
+      if (initializeTask === undefined) {
+        throw new Error(
+          "Cannot transition a new thread without an initialization task",
+        );
+      }
+      newState.threadData = {
+        ...newState.threadData,
+        [id]: {
+          ...data,
+          initializeTask,
+          status: newStatus,
+        },
+      };
+    } else {
+      newState.threadData = {
+        ...newState.threadData,
+        [id]: {
+          ...data,
+          status: newStatus,
+        },
+      };
+    }
   }
 
   return newState;

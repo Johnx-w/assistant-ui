@@ -27,6 +27,7 @@ import {
   statusSnapshot,
 } from "../../runtimes/remote-thread-list/remote-thread-state";
 import type {
+  RemoteThreadInitializeResponse,
   RemoteThreadListAdapter,
   RemoteThreadListOptions,
   RemoteThreadMetadata,
@@ -810,13 +811,15 @@ export class RemoteThreadListThreadListRuntimeCore
       return { remoteId, externalId };
     }
 
+    let initializeTask: Promise<RemoteThreadInitializeResponse> | undefined;
     const { remoteId, externalId } = await this._state.optimisticUpdate({
       execute: () => {
         this._requireAdapterGeneration(adapterGeneration);
-        return adapter.initialize(threadId);
+        initializeTask = adapter.initialize(threadId);
+        return initializeTask;
       },
       optimistic: (state) => {
-        return updateStatusReducer(state, threadId, "regular");
+        return updateStatusReducer(state, threadId, "regular", initializeTask);
       },
       loading: (state, task) => {
         const mappingId = createThreadMappingId(threadId);

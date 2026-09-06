@@ -3,6 +3,7 @@ import {
   classifyThreads,
   createEmptyRemoteThreadState,
   createThreadMappingId,
+  getThreadData,
   seedNewThread,
   updateStatusReducer,
 } from "./remote-thread-state";
@@ -13,12 +14,17 @@ import type {
 
 const initializedDraft = () => {
   const seeded = seedNewThread(createEmptyRemoteThreadState());
-  const regular = updateStatusReducer(seeded.state, seeded.id, "regular");
-  const mappingId = regular.threadIdMap[seeded.id]!;
   const initializeTask = Promise.resolve({
     remoteId: "remote-1",
     externalId: "remote-1",
   });
+  const regular = updateStatusReducer(
+    seeded.state,
+    seeded.id,
+    "regular",
+    initializeTask,
+  );
+  const mappingId = regular.threadIdMap[seeded.id]!;
   return {
     id: seeded.id,
     mappingId,
@@ -79,6 +85,45 @@ describe("remote thread state", () => {
       createThreadMappingId(second.id),
     );
     expect(Object.keys(second.state.threadData)).toEqual([first.id, second.id]);
+  });
+
+  it.each(["regular", "archived"] as const)(
+    "attaches the initialization task when moving a new thread to %s",
+    (newStatus) => {
+      const seeded = seedNewThread(createEmptyRemoteThreadState());
+      const initializeTask = Promise.resolve({
+        remoteId: "remote-1",
+        externalId: "external-1",
+      });
+
+      const transitioned = updateStatusReducer(
+        seeded.state,
+        seeded.id,
+        newStatus,
+        initializeTask,
+      );
+      const data = getThreadData(transitioned, seeded.id);
+
+      expect(data?.status).toBe(newStatus);
+      expect(data?.status === "new" ? undefined : data?.initializeTask).toBe(
+        initializeTask,
+      );
+      expect(transitioned.newThreadId).toBeUndefined();
+      expect(transitioned.threadIds).toEqual(
+        newStatus === "regular" ? [seeded.id] : [],
+      );
+      expect(transitioned.archivedThreadIds).toEqual(
+        newStatus === "archived" ? [seeded.id] : [],
+      );
+    },
+  );
+
+  it("rejects a new thread transition without an initialization task", () => {
+    const seeded = seedNewThread(createEmptyRemoteThreadState());
+
+    expect(() =>
+      updateStatusReducer(seeded.state, seeded.id, "regular"),
+    ).toThrow("initialization task");
   });
 
   it("refreshes the local slot when a listed thread already has a mapping", () => {

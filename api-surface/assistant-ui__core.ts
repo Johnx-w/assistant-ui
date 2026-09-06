@@ -6336,7 +6336,7 @@ declare const unstable_useInteractableVersions: <TState = unknown>(id: string, n
 
 declare const unstable_useThreadMessageIds: () => readonly string[];
 
-declare const updateStatusReducer: (state: RemoteThreadState, threadIdOrRemoteId: string, newStatus: "archived" | "deleted" | "regular") => RemoteThreadState;
+declare const updateStatusReducer: (state: RemoteThreadState, threadIdOrRemoteId: string, newStatus: "archived" | "deleted" | "regular", initializeTask?: Promise<RemoteThreadInitializeResponse>) => RemoteThreadState;
 
 declare const useActionBarCopy: (_param18?: UseActionBarCopyOptions) => {
   copy: () => void;

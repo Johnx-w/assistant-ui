@@ -907,12 +907,15 @@ const useRemoteThreadList = (
         requireAdapterGeneration(adapterGeneration);
         return result;
       }
+      let initializeTask: Promise<RemoteThreadInitializeResponse> | undefined;
       const result = await store.optimisticUpdate({
         execute: () => {
           requireAdapterGeneration(adapterGeneration);
-          return currentAdapter.initialize(threadId);
+          initializeTask = currentAdapter.initialize(threadId);
+          return initializeTask;
         },
-        optimistic: (state) => updateStatusReducer(state, threadId, "regular"),
+        optimistic: (state) =>
+          updateStatusReducer(state, threadId, "regular", initializeTask),
         loading: (state, task) => {
           const mappingId = createThreadMappingId(threadId);
           return {
